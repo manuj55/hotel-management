@@ -46,6 +46,12 @@
     </div>
 
     <script>
+    const today = new Date().toISOString().split('T')[0];
+    
+  
+    document.getElementById('checkIn').setAttribute('min', today);
+    document.getElementById('checkOut').setAttribute('min', today);
+    
         document.addEventListener('DOMContentLoaded', function() {
             const cards = document.querySelectorAll('.card');
             const form = document.getElementById('room-search-form');
