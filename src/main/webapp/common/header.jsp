@@ -27,6 +27,10 @@
 				<li><a href="<%=request.getContextPath()%>/PriceForm"
 					class="nav-link">Dynamic Pricing</a></li>
 			</ul>
+			<ul class="navbar-nav">
+				<li><a href="<%=request.getContextPath()%>/dashboard"
+					class="nav-link">Analytics</a></li>
+			</ul>
 
 		<ul class="navbar-nav navbar-collapse justify-content-end">
 			<li><a href="<%= request.getContextPath() %>/login" class="nav-link">Login</a></li>
