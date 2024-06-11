@@ -14,8 +14,8 @@ import com.HotelManagement.dao.RoomDAO;
 /**
  * Servlet implementation class DashboardServlet
  */
-@WebServlet("/dashboard")
-public class DashboardServlet extends HttpServlet {
+@WebServlet("/Analytics")
+public class AnalyticsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	 private CustomerDAO customerDAO = new CustomerDAO();
@@ -37,7 +37,7 @@ public class DashboardServlet extends HttpServlet {
         request.setAttribute("totalCustomers", totalCustomers);
         request.setAttribute("totalBookings", totalBookings);
         request.setAttribute("totalAvailableRooms", totalAvailableRooms);
-        request.getRequestDispatcher("analytics/dashboard.jsp").forward(request, response);
+        request.getRequestDispatcher("analytics/Analytics.jsp").forward(request, response);
 	}
 
 	/**

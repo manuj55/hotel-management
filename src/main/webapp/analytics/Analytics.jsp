@@ -15,7 +15,7 @@
 <body>
 <jsp:include page="../common/header.jsp"></jsp:include>
  <div>
-        <h2>Dashboard</h2>
+        <h2>Analytics</h2>
         <div>
             <div>
                 <h3>Total Customers</h3>

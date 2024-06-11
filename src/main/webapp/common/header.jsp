@@ -28,7 +28,7 @@
 					class="nav-link">Dynamic Pricing</a></li>
 			</ul>
 			<ul class="navbar-nav">
-				<li><a href="<%=request.getContextPath()%>/dashboard"
+				<li><a href="<%=request.getContextPath()%>/Analytics"
 					class="nav-link">Analytics</a></li>
 			</ul>
 
