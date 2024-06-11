@@ -19,6 +19,10 @@
 				<li><a href="<%=request.getContextPath()%>/assign-room"
 					class="nav-link">Employee assign to room</a></li>
 			</ul>
+			<ul class="navbar-nav">
+				<li><a href="<%=request.getContextPath()%>/AdminParking"
+					class="nav-link">Assign Parking</a></li>
+			</ul>
 
 
 		<ul class="navbar-nav navbar-collapse justify-content-end">
