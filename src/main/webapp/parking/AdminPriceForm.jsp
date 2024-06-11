@@ -9,7 +9,7 @@
             font-family: Arial, sans-serif;
             background-color: #f9f9f9;
             margin: 0;
-            padding: 20px;
+            padding: 0;
         }
         .container {
             max-width: 600px;
