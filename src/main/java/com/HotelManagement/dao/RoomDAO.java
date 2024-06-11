@@ -29,17 +29,17 @@ public class RoomDAO extends DBContext {
 		 */
 
         String query = "WITH AllSuperDeluxeSeaViewRooms AS ( " +
-                "    SELECT RoomNumber, 'Available' AS Status, RoomType, RoomView " +
+                "    SELECT RoomNumber, 'Available' AS Status, RoomType, RoomView, CheckIn, CheckOut " +
                 "    FROM Room " +
                 "    WHERE RoomType = ? " +
                 "    AND RoomView = ? " +
                 "    UNION " +
-                "    SELECT RoomNumber, Status, RoomType, RoomView " +
+                "    SELECT RoomNumber, Status, RoomType, RoomView, CheckIn, CheckOut " +
                 "    FROM AvailabilityRooms " +
                 "    WHERE RoomType = ? " +
                 "    AND RoomView = ? " +
                 ") " +
-                "SELECT RoomNumber, Status, RoomType, RoomView " +
+                "SELECT RoomNumber, Status, RoomType, RoomView, CheckIn, CheckOut " +
                 "FROM AllSuperDeluxeSeaViewRooms " +
                 "WHERE RoomNumber NOT IN ( " +
                 "    SELECT RoomNumber " +
@@ -133,6 +133,8 @@ public class RoomDAO extends DBContext {
                room.setStatus(rs.getString("Status"));
                room.setRoomType(rs.getString("RoomType"));
                room.setRoomView(rs.getString("RoomView"));
+               room.setCheckIn(rs.getDate("CheckIn"));
+               room.setCheckOut(rs.getDate("CheckOut"));
                rooms.add(room);
            }
         } catch (Exception e) {
@@ -156,5 +158,24 @@ public class RoomDAO extends DBContext {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    
+    public List<Room> getAllRooms() {
+        List<Room> rooms = new ArrayList<>();
+        String sql = "SELECT * FROM Room";
+        try (PreparedStatement statement = connection.prepareStatement(sql);
+             ResultSet resultSet = statement.executeQuery()) {
+            while (resultSet.next()) {
+                Room room = new Room();
+                room.setRoomNumber(resultSet.getInt("RoomNumber"));
+                room.setRoomType(resultSet.getString("RoomType"));
+                room.setRoomView(resultSet.getString("RoomView"));
+                room.setStatus(resultSet.getString("Status"));
+                rooms.add(room);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return rooms;
     }
 }

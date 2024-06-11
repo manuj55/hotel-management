@@ -84,7 +84,12 @@ public class BookingServlet extends HttpServlet {
 		  availabilityRoom.setCheckOut(checkOut);
 		  
 		  AvailabilityRoomDAO availabilityRoomDAO = new AvailabilityRoomDAO();
-		  availabilityRoomDAO.updateAvailabilityRoom(availabilityRoom);
+		    if (availabilityRoomDAO.isRoomAvailable(availabilityRoom)) {
+		        availabilityRoomDAO.updateAvailabilityRoom(availabilityRoom);
+		    } else {
+		        availabilityRoomDAO.insertAvailabilityRoom(availabilityRoom);
+		    }
+
 		 
 
         // Redirect to booking confirmation

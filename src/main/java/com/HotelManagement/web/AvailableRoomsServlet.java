@@ -15,7 +15,11 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+
 
 
 @WebServlet("/available")
@@ -31,7 +35,7 @@ public class AvailableRoomsServlet extends HttpServlet {
     	
         CategoryDAO categoryDAO = new CategoryDAO();
         List<Category> categories = categoryDAO.getAllCategories();
-System.out.print(categories+"hit");
+
         request.setAttribute("categories", categories);
         request.getRequestDispatcher("/room-search.jsp").forward(request, response);
     }
@@ -41,6 +45,7 @@ System.out.print(categories+"hit");
             throws ServletException, IOException {
         handleRequest(request, response);
     }
+    
 
     private void handleRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -78,8 +83,42 @@ System.out.print(categories+"hit");
 
         RoomDAO roomDAO = new RoomDAO();
         List<Room> availableRooms = roomDAO.getAvailableRooms(roomType, roomView, checkInDate, checkOutDate);
+        
+        for (Room room : availableRooms) {
+            System.out.println(room + "availableRooms");
+        }
+        
+        Map<Integer, Room> roomMap = new HashMap<>();
 
-        request.setAttribute("availableRooms", availableRooms);
+        for (Room room : availableRooms) {
+            Date roomCheckIn = room.getCheckIn();
+            Date roomCheckOut = room.getCheckOut();
+
+            // Check if roomCheckIn and roomCheckOut are not null before comparing
+            if (roomCheckIn != null && roomCheckOut != null) {
+                boolean isOverlapping = !(checkOutDate.before(roomCheckIn) || checkInDate.after(roomCheckOut));
+                if (isOverlapping) {
+                    // dates overlap
+                    if ("Booked".equals(room.getStatus())) {
+                        roomMap.put(room.getRoomNumber(), room);
+                    }
+                } else {
+                    // do not overlap
+                    roomMap.putIfAbsent(room.getRoomNumber(), room);
+                }
+            } else {
+                // dates are null
+                roomMap.putIfAbsent(room.getRoomNumber(), room);
+            }
+        }
+
+        List<Room> filteredRooms = new ArrayList<>(roomMap.values());
+
+        // Print the filteredRooms list to the console
+        for (Room room : filteredRooms) {
+            System.out.println(room);
+        }
+        request.setAttribute("availableRooms", filteredRooms);
         request.setAttribute("checkInDate", checkInDate);
         request.setAttribute("checkOutDate", checkOutDate);
         request.getRequestDispatcher("available-rooms.jsp").forward(request, response);

@@ -19,25 +19,7 @@
 </head>
 <body>
 
-	<header>
-		<nav class="navbar navbar-expand-md navbar-dark"
-			style="background-color: #708090">
-			<div>
-				<a href="http://localhost:8080/HotelManagement/" class="navbar-brand"> Hotel
-					Management App </a>
-			</div>
-
-			<ul class="navbar-nav">
-				<li><a href="<%=request.getContextPath()%>/list"
-					class="nav-link">Employees</a></li>
-			</ul>
-			
-			<ul class="navbar-nav">
-				<li><a href="<%=request.getContextPath()%>/available"
-					class="nav-link">Room search</a></li>
-			</ul>
-		</nav>
-	</header>
+	<jsp:include page="./common/header.jsp"></jsp:include>
 	<br>
 
 	<div class="row">

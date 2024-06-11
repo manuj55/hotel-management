@@ -13,6 +13,8 @@ public class Room {
     private Date checkOut;
     private String email;
     
+    
+    
 	public int getId() {
 		return id;
 	}
@@ -67,4 +69,16 @@ public class Room {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	 @Override
+	    public String toString() {
+	        return "Room{" +
+	               "roomNumber=" + roomNumber +
+	               ", roomType='" + roomType + '\'' +
+	               ", roomView='" + roomView + '\'' +
+	               ", status='" + status + '\'' +
+	               ", checkIn=" + checkIn +
+	               ", checkOut=" + checkOut +
+	               '}';
+	    }
 }

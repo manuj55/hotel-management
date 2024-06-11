@@ -16,6 +16,7 @@
     </style>
 </head>
 <body>
+<jsp:include page="./common/header.jsp"></jsp:include>
 <div class="container mt-3">
     <h1>Room Search</h1>
     <form id="room-search-form" action="<%=request.getContextPath()%>/available" method="post">

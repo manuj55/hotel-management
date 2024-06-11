@@ -12,20 +12,7 @@
 
 </head>
 <body>
-
-	<header>
-		<nav class="navbar navbar-expand-md navbar-dark"
-			style="background-color: Navy Blue">
-			<div>
-				<a href="http://localhost:8080/HotelManagement/" class="navbar-brand"> User Management App </a>
-			</div>
-
-			<ul class="navbar-nav">
-				<li><a href="<%=request.getContextPath()%>/list"
-					class="nav-link">Employee</a></li>
-			</ul>
-		</nav>
-	</header>
+<jsp:include page="./common/header.jsp"></jsp:include>
 	<br>
 	<div class="container col-md-5">
 		<div class="card">

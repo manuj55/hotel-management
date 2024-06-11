@@ -1,5 +1,7 @@
 package com.HotelManagement.model;
 
+import java.io.Serializable;
+
 public class User {
 	protected int id;
 	protected String name;

@@ -7,6 +7,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+<jsp:include page="./common/header.jsp"></jsp:include>
 <div class="container mt-3">
     <h1>Booking Confirmation</h1>
     <div class="card">

@@ -11,6 +11,7 @@
         crossorigin="anonymous">
 </head>
 <body>
+<jsp:include page="./common/header.jsp"></jsp:include>
 <c:set var="customerID" value="${sessionScope.customerID}"/>
     <div class="container">
         <h2>Available Rooms</h2>
