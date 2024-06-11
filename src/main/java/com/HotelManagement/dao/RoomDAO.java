@@ -5,6 +5,7 @@ import com.HotelManagement.utils.DBContext;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.Date;
@@ -177,5 +178,19 @@ public class RoomDAO extends DBContext {
             e.printStackTrace();
         }
         return rooms;
+    }
+    
+    public int getTotalAvailableRooms() {
+        int total = 0;
+        String query = "SELECT COUNT(*) AS total FROM Room WHERE Status='Available'";
+        try (PreparedStatement stmt = connection.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
+            if (rs.next()) {
+                total = rs.getInt("total");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return total;
     }
 }

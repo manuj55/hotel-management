@@ -3,6 +3,7 @@ package com.HotelManagement.dao;
 import com.HotelManagement.model.Booking;
 import com.HotelManagement.utils.DBContext;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.sql.ResultSet;
@@ -35,5 +36,19 @@ public class BookingDAO extends DBContext{
         }
 
         return bookingID;
+    }
+    
+    public int getTotalBookings() {
+        int total = 0;
+        String query = "SELECT COUNT(*) AS total FROM Bookings";
+        try (PreparedStatement stmt = connection.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
+            if (rs.next()) {
+                total = rs.getInt("total");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return total;
     }
 }
